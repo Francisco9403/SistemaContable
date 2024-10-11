@@ -1,0 +1,123 @@
+{% extends 'login/base.html' %}
+{% load static %}
+
+{% block title %}Análisis de Ventas{% endblock title %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/analisis_ventas.css' %}">
+
+<div class="el_divo">
+    <div class="chart-container">
+        <h1 class="chart-title">Productos más vendidos</h1>
+        <canvas id="topSellingProductsChart" style="padding-bottom: 90px;"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h1 class="chart-title">Productos con mayor recaudación</h1>
+        <canvas id="topRevenueProductsChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h1 class="chart-title">Mejores vendedores</h1>
+        <canvas id="topSellingEmployeesChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h1 class="chart-title">Los clientes más fieles</h1>
+        <canvas id="topBuyersChart"></canvas>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+         // Retrieve the JSON data
+        var topSellingProductsData = JSON.parse('{{ top_selling_products_json|safe }}');
+        var topRevenueProductsData = JSON.parse('{{ top_revenue_products_json|safe }}');
+        var topSellingEmployeesData = JSON.parse('{{ top_selling_employees_json|safe }}');
+        var topBuyersData = JSON.parse('{{ top_buyers_json|safe }}');
+
+
+        // Extract labels and data from JSON
+        var labelsProduct = topSellingProductsData.map(item => item.id_articulo__nombre);
+        var dataProduct = topSellingProductsData.map(item => item.total_qty);
+
+        var labelsRevenue = topRevenueProductsData.map(item => item.id_articulo__nombre);
+        var dataRevenue = topRevenueProductsData.map(item => item.total_revenue);
+
+        var labelsEmployees = topSellingEmployeesData.map(item => item.vendedor__nombre);
+        var dataEmployees = topSellingEmployeesData.map(item => item.total_revenue);
+
+        var labelsBuyers = topBuyersData.map(item => item.cliente);
+        var dataBuyers = topBuyersData.map(item => item.total_spent);
+        
+
+        // Define colors for each chart
+        const productColors = [
+            '255, 99, 132',  // Red
+            '54, 162, 235',  // Blue
+            '255, 205, 86',  // Yellow
+            '75, 192, 192',  // Teal
+            '153, 102, 255'  // Purple
+        ];
+
+        const revenueColors = [
+            '255, 159, 64',   // Orange
+            '75, 192, 192',   // Teal
+            '153, 102, 255',  // Purple
+            '255, 99, 132',   // Red
+            '54, 162, 235'    // Blue
+        ];
+
+        const employeeColors = [
+            '75, 192, 192',   // Teal
+            '255, 205, 86',   // Yellow
+            '153, 102, 255',  // Purple
+            '255, 99, 132',   // Red
+            '54, 162, 235'    // Blue
+        ];
+
+        const buyerColors = [
+            '255, 99, 132',   // Red
+            '54, 162, 235',   // Blue
+            '255, 159, 64',   // Orange
+            '75, 192, 192',   // Teal
+            '153, 102, 255'   // Purple
+        ];
+
+        function renderBarChart(canvasId, title, labels, data, colors,type) {
+            const ctx = document.getElementById(canvasId).getContext("2d");
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        backgroundColor: colors.map(color => `rgba(${color}, 0.2)`),
+                        borderColor: colors.map(color => `rgba(${color}, 1)`),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create the charts
+        renderBarChart("topSellingProductsChart", "En base a la cantidad vendida", labelsProduct, dataProduct, productColors,'pie');
+        renderBarChart("topRevenueProductsChart", "En base al total recaudado", labelsRevenue, dataRevenue, revenueColors,'bar');
+        renderBarChart("topSellingEmployeesChart", "En base al total que lleva vendido", labelsEmployees, dataEmployees, employeeColors,'bar');
+        renderBarChart("topBuyersChart", "En base a lo gastado", labelsBuyers, dataBuyers, buyerColors,'bar');
+
+    </script>
+
+
+{% endblock content %}

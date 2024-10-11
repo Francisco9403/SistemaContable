@@ -1,0 +1,114 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Registro venta{% endblock %}
+
+
+{% block content %}
+{% if is_detalles %}
+    <script src="{% static 'js/registro_venta.js' %}"></script>
+{% endif %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registro_venta.css' %}">
+
+
+{% if is_detalles %}
+
+    <h1>Registro de Venta</h1>
+    <form>
+        <label for="cliente">Cliente:</label>
+        <select id="cliente" name="cliente">
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nombre_del_cliente }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="fecha">Fecha:</label>
+        <input type="text" id="datepicker" name="fecha" disabled>
+
+        <label for="codigo">Código de Venta:</label>
+        <input type="text" id="codigo" name="codigo" disabled>
+
+        <label for="formaPago">Forma de Pago:</label>
+        <select id="formaPago" name="formaPago">
+                <option value="efectivo">efectivo</option>
+                <option value="tarjeta">tarjeta</option>
+        </select>
+
+        <label for="vendedor">Vendedor:</label>
+        <select id="vendedor" name="vendedor">
+            {% for vendedor in vendedores %}
+                <option value="{{ vendedor.id }}">{{ vendedor.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea>
+
+        <label for="productos">Seleccione Producto:</label>
+        <select id="productos" name="productos">
+            {% for articulo in articulos %}
+                <option value="{{ articulo.id }}">{{ articulo.nombre }}</option>
+            {% endfor %}
+        </select>
+        <a class="btn btn-primary" id="agregar_producto" href="{% url 'registrar_productos' %}">Agregar Producto</a>
+        <a class="btn btn-primary" id="lista_productos" target="blank" href="{% url 'AdministracionStock' %}">Lista Productos</a>
+
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad">
+
+        <div class="add-button">
+            <button type="button" class="btn btn-primary" id="agregar">Agregar</button>
+        </div>
+
+    </form>
+
+    <hr class="my-3 ">
+    <div class="productos-list">
+        <h2> Carrito </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="productos-body">
+                <!-- Filas de productos generadas dinámicamente (iguales a los anteriores) -->
+            </tbody>
+        </table>
+        
+    </div>
+
+    <div class="total-venta" id="total-venta"></div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" id="registrar">Registrar Venta</button>
+        <button class="btn btn-primary btn-edit" id="editar_renglon">Editar ultimo renglon</button>
+        <button class="btn btn-danger btn-delete" id="borrar_renglon">Borrar ultimo renglon</button>
+    </div>
+{% else %}
+{% endif %}
+
+{% if is_detalles %}
+    <script>
+        // Función para obtener la fecha actual en formato YYYY-MM-DD
+        function obtenerFechaActual() {
+            const fecha = new Date();
+            const año = fecha.getFullYear();
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Añade ceros a la izquierda si es necesario
+            const dia = String(fecha.getDate()).padStart(2, '0'); // Añade ceros a la izquierda si es necesario
+            return `${año}-${mes}-${dia}`;
+        }
+
+        // Configura el campo de fecha con la fecha actual y lo hace de solo lectura
+        const datepicker = document.getElementById("datepicker");
+        datepicker.value = obtenerFechaActual();
+
+    </script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends 'login/base.html' %}    # depending on where you locate that file
+{% load static %}
+
+
+{% block title %}Registro de Asientos Contables{% endblock title%}
+
+
+{% block content %}
+
+
+{% if is_detalles %}
+    <script src="{% static 'js/index.js' %}"></script>
+    {% comment %} <script src="{% static 'js/registro_asiento.js' %}"></script> {% endcomment %}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI (incluyendo el módulo de DatePicker) -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endif %}
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+
+<div class="container">
+    {% if is_detalles %}
+        <h1 class="registroAciento" >Registro de Asientos Contables</h1>
+        <form id="asiento-form">
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                {% comment %} <input type="date" id="fecha" name="fecha" required> {% endcomment %}
+                <input type="text" id="datepicker" name="fecha" disabled>
+            </div>
+            <div class="form-group">
+                <label for="numero">Número de Asiento:</label>
+                <input type="text" id="numero" name="numero" disabled>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+            </div>
+            <div class="form-group">
+                <label for="cuenta">Cuenta:</label>
+                <select id="cuenta" name="cuenta" required>
+                    {% for cuenta in cuentas %}
+                    <option value="{{ cuenta.id }}">{{ cuenta.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <a class="btn btn-primary" id="plan_cuentas" href="{% url 'plan_cuentas' %}">Plan de cuentas</a>
+                {% if is_admin or is_contador %}
+                <a class="btn btn-primary" id="agregar_cuenta" href="{% url 'registrar_cuentas' %}">Agregar cuenta</a>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label>Debe o Haber:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="debeohaber" value="debe" required> Debe</label>
+                    <label><input type="radio" name="debeohaber" value="haber" required> Haber</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" id="agregar">Agregar</button>
+                
+            </div>
+        </form>
+        <div class="asientos-list">
+            <h2>Asientos Cargados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cuenta</th>
+                        <th>Debe</th>
+                        <th>Haber</th>
+                    </tr>
+                </thead>
+                <tbody id="asientos-body">
+                    <!-- Filas de asientos generadas dinámicamente (iguales a los anteriores) -->
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="registrar">Registrar Asiento</button>
+            <button class="btn btn-primary btn-edit" id="editar_renglon">Editar ultimo renglon</button>
+            <button class="btn btn-danger btn-delete" id="borrar_renglon">Borrar ultimo renglon</button>
+        </div>
+    {% else %}
+
+    <h1 class="registroAciento" >Detalle de asiento</h1>
+    <form id="asiento-form">
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="text" id="datepicker" name="fecha" value="{{ asiento.fecha }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="numero">Número de Asiento:</label>
+            <input type="text" id="numero" name="numero" value="{{ asiento.id }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" value="{{ asiento.descripcion }}" disabled>
+        </div>
+        {% if asiento.id_venta %}
+            <div class="form-group">
+                <label for="relacion_asiento">Factura relacionada a este asiento: <a target="_blank" href="{% url 'factura' asiento.id_venta.id %}">Ver Factura</a></label>
+            </div>
+        {% endif %}
+
+    </form>
+    <div class="asientos-list">
+        <h2>Asientos Cargados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                </tr>
+            </thead>
+            <tbody id="asientos-body">
+                {% for a_c in asientos_cuenta %}
+                    <tr>
+                        <td>{{ a_c.id_cuenta.nombre }}</td>
+                        {% if a_c.debe == 0 %} <td></td> {% else %} <td>{{ a_c.debe }}</td> {% endif %}
+                        {% if a_c.haber == 0 %} <td></td> {% else %} <td>{{ a_c.haber }}</td> {% endif %}
+                    </tr>
+                {% endfor %}
+                <!-- Filas de asientos generadas dinámicamente (iguales a los anteriores) -->
+            </tbody>
+        </table>
+    </div> 
+    {% endif %}
+    
+</div>
+    
+{% if is_detalles %}
+        <script>
+            // Función para obtener la fecha actual en formato YYYY-MM-DD
+            function obtenerFechaActual() {
+                const fecha = new Date();
+                const año = fecha.getFullYear();
+                const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Añade ceros a la izquierda si es necesario
+                const dia = String(fecha.getDate()).padStart(2, '0'); // Añade ceros a la izquierda si es necesario
+                return `${año}-${mes}-${dia}`;
+            }
+
+            // Configura el campo de fecha con la fecha actual y lo hace de solo lectura
+            const datepicker = document.getElementById("datepicker");
+            datepicker.value = obtenerFechaActual();
+
+        </script>
+   {% endif %}
+
+{% endblock content %}

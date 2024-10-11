@@ -1,0 +1,75 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Registro Producto{% endblock %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registro_producto.css' %}">
+<script src="{% static 'js/registro_producto.js' %}"></script>
+
+
+<h1>Registro de Producto</h1>
+<form action="{% url 'registrar_productos' %}" method="post">
+    {% csrf_token %}
+    <label for="nombre">Nombre:</label>
+    <textarea id="nombre" name="nombre"></textarea>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea>
+
+    <label for="precio">Precio Base: ⓘ(El precio de la venta se deduce del impuesto)</label>
+    <input type="number" id="precio" name="precio">
+
+    <label for="precio_costo">Precio Costo:</label>
+    <input type="number" id="precio_costo" name="precio_costo">
+
+    <label for="impuesto">Porcentaje de impuesto:</label>
+    <input type="number" id="impuesto" name="impuesto">
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad">
+
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <label for="precio_final">Precio Final:</label>
+              <div class="input-group">
+                <input class="precio_final" type="number" id="precio_final" name="precio_final" readonly disabled>
+                <div class="input-group-append">
+                    <button class="botonRegistrar" id="calcular_precio" type="button">Calcular Precio Final</button>
+              </div>
+              <button class= "bontonRegistrar" id="registrar" type="submit">Registrar Producto</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "success"
+                })
+            </script>
+        {% else %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "error"
+                })
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

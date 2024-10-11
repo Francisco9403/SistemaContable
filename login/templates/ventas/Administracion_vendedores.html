@@ -1,0 +1,46 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Administracion de Vendedores{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/Administracion_clientes.css' %}">
+
+
+
+<div class="container" action="{% url 'Administracion_vendedores' %}" method="post">
+    <div class="header">
+        Administracion del Vendedores
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nº de empleado</th>
+                <th>DNI/CUIL</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+            </tr>
+        </thead>
+        <tbody id="vendedores-body">
+            {% for vendedor in vendedores %}
+                <tr>
+                    <td>{{vendedor.id}}</td>
+                    <td>{{vendedor.dni}}</td>
+                    <td>{{vendedor.nombre}}</td>
+                    <td>{{vendedor.contacto}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+    <div class="add-button">
+        <a href="{% url 'registrar_vendedores' %}"><button class="button2">Registrar nuevo vendedor</button></a>
+    </div>
+</div>
+
+
+{% endblock content %}

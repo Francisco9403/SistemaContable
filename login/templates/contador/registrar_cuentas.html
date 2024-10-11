@@ -1,0 +1,72 @@
+{% extends 'login/base.html' %}    # depending on where you locate that file
+{% load static %}
+
+
+
+{% block title %}Registrar Cuentas{% endblock title%}
+
+
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registro_cuentas.css' %}">
+
+
+<h1>Formulario de Carga de Datos de Cuenta</h1>
+
+<form action="{% url 'registrar_cuentas' %}" method="post">
+    {% csrf_token %}
+
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+    
+    <label for="codigo">Código:</label>
+    <input type="number" id="codigo" name="codigo" required><br><br>
+    
+    <label for="tipo">Tipo:</label>
+    <select name="cuenta" id="cuenta_tipo" required style="color: #313145; background-color: white; font-size: 1rem; border-radius: 4px">
+        <option value="AC">Activo</option>
+        <option value="PA">Pasivo</option>
+        <option value="R+">Resultado positivo</option>
+        <option value="R-">Resultado negativo</option>
+        <option value="PM">Patrimonio</option>
+    </select>
+
+    <label>Recibe Saldo:</label>
+    <div class="radio-group">
+        <label><input type="radio" name="recibe_saldo" value="Si" required> Si  </label>
+        <label><input type="radio" name="recibe_saldo" value="No" required> No </label>
+    </div>
+
+    <a class="btn btn-primary" id="plan_cuentas" href="{% url 'plan_cuentas' %}">Plan de cuentas</a>
+
+    
+    <input type="submit" class="btn btn-primary" value="Guardar Cuenta">
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "success"
+                })
+            </script>
+        {% else %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "error"
+                })
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+{% endblock content %}

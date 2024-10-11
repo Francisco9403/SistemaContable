@@ -1,0 +1,35 @@
+from django.urls import path, include
+from . import views
+
+urlpatterns = [
+    path('', views.lista_asientos_view , name='lista_asientos'),
+    path('login_user/', views.login_user, name='login'),
+    path('registrar_cuentas/', views.registrar_cuentas_view, name='registrar_cuentas'),
+    path('registrar_asientos/', views.index, name='index'),
+    path('getIdAsiento/', views.obtener_proximo_id_asiento, name='getIdAsientos'),
+    path('registrar_asiento/', views.registrar_asiento, name='registrar_asiento'),
+    path('detalles_asiento/<int:id>', views.detalles_asiento_view, name='detalles_asiento'),
+    path('plan_cuentas/', views.plan_cuentas_view, name='plan_cuentas'),
+    path('libro_diario/', views.libro_diario_view, name='libro_diario'),
+    path('libro_mayor/', views.libro_mayor_view, name='libro_mayor'),
+    path('informe_ventas/', views.informe_ventas_view, name="informe_ventas"),
+    path('AdministracionStock/', views.AdministracionStock_view, name='AdministracionStock'),
+    path('registrar_productos/', views.registrar_productos_view, name='registrar_productos'),
+    path('get-nombre-cuenta', views.get_nombre_cuenta),
+    path('get-asientos-filtrados', views.get_asientos_filtrados),
+    path('get-cuenta-asientos', views.get_cuenta_asientos),
+    path('is-valid-saldo', views.is_valid_saldo),
+    path('get-detalle-producto', views.get_detalle_producto),
+    path('registro_venta/', views.registro_venta, name='registro_venta'),
+    path('getIdVenta/', views.obtener_proximo_id_venta, name='getIdVenta'),
+    path('registrar_venta/', views.registrar_venta, name='registrar_venta'),
+    path('Administracion_clientes/', views.Administracion_clientes_view, name="Administracion_clientes"),
+    path('registrar_clientes/', views.registrar_clientes_view, name='registrar_clientes'),
+    path('Administracion_vendedores/', views.Administracion_vendedores_view, name="Administracion_vendedores"),
+    path('registrar_vendedores/', views.registrar_vendedores_view, name='registrar_vendedores'),
+    path('actualizar_stock/', views.actualizar_stock_view, name='actualizar_stock'),
+    path('editar_articulo/<int:articulo_id>/', views.editar_articulo_view, name='editar_articulo'),
+    path('factura/<int:id>', views.factura_view, name='factura'),
+    path('analisis_ventas/', views.analisis_ventas, name='analisis_ventas'),
+
+]

@@ -1,0 +1,53 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Administracion de stock{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/AdministracionStock.css' %}">
+<script src="{% static 'js/AdministracionStock.js' %}"></script>
+
+
+
+<div class="container" action="{% url 'AdministracionStock' %}" method="post">
+    <div class="header">
+        Administracion del Stock
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre producto</th>
+                <th>Precio a la venta</th>
+                <th>Descripción</th> 
+                <th>Impuesto</th>
+                <th>Stock</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody id="articulos-body">
+            {% for articulo in articulos %}
+                <tr>
+                    <td>{{articulo.id}}</td>
+                    <td>{{articulo.nombre}}</td>
+                    <td>{{articulo.precio}}</td>
+                    <td>{{articulo.descripcion}}</td>
+                    <td>{{articulo.impuesto}}</td>
+                    <td>{{articulo.cantidad}}</td>
+                    <td>{{articulo.costo}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <div >
+        <a href="{% url 'registrar_productos' %}"><button class="button">Registrar nuevo producto</button></a>
+        <a href="{% url 'actualizar_stock' %}"><button class="button">Actualizar stock</button></a>
+    </div>
+</div>
+
+<!-- JavaScript can be added here to make the page interactive -->
+
+{% endblock content %}

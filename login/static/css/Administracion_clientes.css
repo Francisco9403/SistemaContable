@@ -1,0 +1,87 @@
+ /* Add your CSS styles here */
+ body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.label {
+    flex: 1;
+}
+.input {
+    flex: 2;
+}
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.table th {
+    background-color: #f2f2f2;
+}
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.add-button {
+    text-align: center;
+    margin-top: 20px;
+}
+/* Estilo para los botones pequeños */
+.button {
+font-size: 18px; /* Tamaño de fuente más pequeño */
+padding: 4px 8px ; /* Espaciado interior más pequeño */
+margin-left: 10px; /* Espacio entre los botones */
+height: auto;
+width: auto;
+border: 2px solid black; /* Grosor de 2 píxeles y color negro */
+background-color: #007bff;
+color: white;
+border-radius: 3px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+
+.button2{
+font-size: 18px; /* Tamaño de fuente más pequeño */
+padding: 4px 8px ; /* Espaciado interior más pequeño */
+margin-left: 10px; /* Espacio entre los botones */
+height: auto;
+width: auto;
+border: 2px solid black; /* Grosor de 2 píxeles y color negro */
+background-color: #007bff;
+color: white;
+border-radius: 3px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+
+}
+
+button:hover {
+background-color: #0056b3;
+}

@@ -1,0 +1,98 @@
+
+
+body {
+    text-align: center; /* Centra el contenido */
+}
+
+
+
+.item{
+    padding-right: 10px;
+
+}
+
+h1{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form {
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    width: 80%; /* Ancho del formulario */
+    max-width: 600px; /* Ancho máximo del formulario */
+    text-align: left; /* Alinea el contenido del formulario a la izquierda */
+}
+
+
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: 2px solid black; /* Grosor de 2 píxeles y color negro */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #2067b3;
+    color: #fff;
+    padding: 10px 15px;
+    border: 2px solid black; /* Grosor de 2 píxeles y color negro */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+    table {
+        width: 60%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .input-group{
+        padding-right: 10px;
+    }

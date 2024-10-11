@@ -1,0 +1,76 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+.container-plan-cuentas{
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .tabla{
+        border-collapse: collapse;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table td,.table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table tr:nth-child(even){
+        background-color: #f2f2f2;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+    .table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        /*background-color: #04AA6D;*/
+        color: white;
+    }
+    .renglon{
+        border: white 1px solid;
+        padding: 30px;
+    }
+}
+
+.plan_cuenta_titulo{
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+
+.columna th {
+        text-align: center; /* Centro horizontalmente */
+        vertical-align: middle; /* Centro verticalmente */
+        border: 1px solid #ccc; /* Ejemplo: añadir bordes para claridad */
+      }
+
+.btn.btn-primary {
+        border: 2px solid black;
+        /* Puedes ajustar el ancho del borde (1px) según tus necesidades */
+        font-weight: bold; /* Hacer que el texto sea negrita */
+
+      }

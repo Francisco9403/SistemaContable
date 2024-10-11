@@ -1,0 +1,28 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Actualizar stock{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/Actualizar_Stock.css' %}">
+<script src="{% static 'js/actualizar_stock.js' %}"></script>
+
+<div class="contenedor">
+<h1 class="tituloStock"> Actualizar Stock </h1>
+
+<form id="form_actualizar_stock" method="get">
+    <label class="articulo" for="articulo">Seleccione el articulo a editar:</label>
+    <select id="articulo" name="articulo" required>
+        {% for articulo in articulos %}
+        <option value="{{ articulo.id }}">{{ articulo.nombre }}</option>
+        {% endfor %}
+    </select>
+    <button class="button" type="submit">Confirmar Selección</button>
+</form>
+
+
+{% endblock content %}
+

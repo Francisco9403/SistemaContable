@@ -1,0 +1,85 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Libro mayor{% endblock title%}
+
+
+{% block content %}
+
+<script src="{% static 'js/libro_mayor.js' %}"></script>
+
+<style>
+
+    /* Estilos para el encabezado del libro mayor */
+.libro_mayor_titulo {
+    font-size: 24px; /* Tamaño de fuente del título */
+    margin-top: 100px; /* Espacio inferior entre el título y el contenido */
+}
+
+/* Estilos para el contenedor de la cuenta y el botón */
+
+/* Estilos para el título "Cuenta:" */
+.titulo_cuenta {
+    font-size: 18px; /* Tamaño de fuente del título "Cuenta:" */
+    margin-right: 20px;
+}
+
+.fechas_cuenta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-inline: 10px
+}
+
+/* Estilos para el menú desplegable */
+select[name="cuenta"] {
+    width: 260px !important; /* Aumentar el ancho del menú desplegable */
+    margin-right: 10px; /* Espacio derecho entre el menú desplegable y el botón */
+}
+
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/libro_mayor.css' %}">
+
+<div class="container-libro">
+
+    <h2 class="libro_mayor_titulo">Libro mayor</h2>
+    
+    <div class="fechas_cuenta">
+        <h2 class="titulo_cuenta">Cuenta:</h2>
+        <select name="cuenta" id="cuenta">
+            {% for cuenta in cuentas %}
+            <option value="{{cuenta.id}}">{{cuenta.nombre}}</option>
+            {% endfor %}
+        </select>
+        <div class="label1">Inicio:</div>
+        <input type="date" class="input" id="startDate">
+        <div class="label">Final:</div>
+        <input type="date" class="input" id="endDate">
+        <button class="button" id="aplicar_cuenta">Filtrar</button>
+        <button class="button" id="clearButton">Limpiar</button>
+    </div>
+
+    <br>
+    <table id="asiento_tabla" class="table">
+        <thead>
+            <tr>
+                <td><strong>Fecha</strong></td>
+                <td><strong>Detalle</strong></td>
+                <td><strong>Debe</strong></td>
+                <td><strong>Haber</strong></td>
+                <td><strong>Saldo Parcial</strong></td>
+            </tr>
+        </thead>
+        <tbody id="asientos-body">
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}

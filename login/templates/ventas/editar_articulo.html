@@ -1,0 +1,30 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Editar articulo{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/editar_articulo.css' %}">
+<script src="{% static 'js/editar_articulo.js' %}"></script>
+
+
+    <h1 class="titulo">Editar Artículo</h1>
+    <form id="formEditarArticulo" class="form" method="post" action="{% url 'editar_articulo' articulo.id %}">
+        {% csrf_token %}
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion">{{ articulo.descripcion }}</textarea>
+        <label for="precio">Precio Base:</label>
+        <input type="text" id="precio" name="precio" value="{{ articulo.precio }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ articulo.nombre }}">
+        <label for="cantidad">Cantidad:</label>
+        <input type="text" id="cantidad" name="cantidad" value="{{ articulo.cantidad }}">
+        <label for="impuesto">Impuesto:</label>
+        <input type="text" id="impuesto" name="impuesto" value="{{ articulo.impuesto }}">
+        <button class="button" type="submit">Guardar Cambios</button>
+    </form>
+
+{% endblock content %}

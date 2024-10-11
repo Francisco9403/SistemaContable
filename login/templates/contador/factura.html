@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Factura de la venta</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/factura.css' %}">
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<img
+			src="{% static 'images/banner.png' %}"
+			style="width: 70%; max-width: 300px"
+			/>
+
+			<h3>Número de factura:#{{ venta.id }}<br /></h3>
+			<h4>Generada el: {{ venta.fecha }}<br /></h4>
+			<table cellpadding="0" cellspacing="0">
+				<tr cellpadding="0" cellspacing="0"  class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									<strong>Emisor: <br></strong>
+									Blue Label S.A.<br />
+									blue_label@elixir.com<br />
+									Av. simple, Junin, BA
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+										<strong>Receptor: <br></strong>
+										{{ venta.cliente.nombre_del_cliente }}<br />
+										{{ venta.cliente.contacto }}<br />
+										{{ venta.cliente.direccion }}
+								</td>
+								<br/>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Método de pago</td>
+					<td></td>
+					<td>Vendedor</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>{{ venta.forma_pago }}</td>
+					<td></td>
+					<td>{{ venta.vendedor.nombre }}</td>
+					<td></td>
+				</tr>
+
+				<tr class="heading">
+					<td>Descripción</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>{{ venta.descripcion }}</td>
+	
+				</tr>
+
+				<tr class="heading">
+					<td>Ítem</td>
+					<td>Cantidad</td>
+					<td>Precio(con IVA)</td>
+					<td>IVA</td>
+					<td>Subtotal</td>
+				</tr>
+
+
+				{% for articulo in venta_articulos %}
+                    <tr class="item">
+                        <td>{{ articulo.id_articulo.nombre }}</td>
+                        <td>{{ articulo.cantidad }}</td>
+                        <td>${{ articulo.precio }}</td>
+						<td>%{{articulo.id_articulo.impuesto }}</td>
+						<td>${{ articulo.precio_parcial }}</td>
+                    </tr>
+                {% endfor %}
+
+				
+				</tr>
+				<tr class="total">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Total: ${{venta.monto_venta}}</td>
+			</table>
+		</div>
+
+		<div id="printButtonContainer" style="display: flex; justify-content: center;">
+			<input class="print_button" id="printpagebutton" type="button" value="Imprimir Factura" onclick="printpage()"/>
+
+			<script type="text/javascript">
+				function printpage() {
+					var printButton = document.getElementById("printpagebutton");
+					printButton.style.visibility = 'hidden';
+					window.print()
+					printButton.style.visibility = 'visible';
+				}
+			</script>
+		</div>
+
+	</body>
+</html>

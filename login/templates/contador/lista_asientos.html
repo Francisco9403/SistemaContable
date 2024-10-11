@@ -1,0 +1,54 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Lista asientos{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/lista_asientos.css' %}">
+<script src="{% static 'js/lista_asientos.js' %}"></script>
+
+
+
+<div class="container" action="{% url 'lista_asientos' %}" method="post">
+    <div class="header">
+        Lista asientos
+    </div>
+    <div class="row">
+        <div class="label">Inicio:</div>
+        <input type="date" class="input" id="startDate">
+        <div class="label">Final:</div>
+        <input type="date" class="input" id="endDate">
+        <button class="button" id="filterButton">Filtrar</button>
+        <button class="button" id="clearButton">Limpiar</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Nro de Asiento</th>
+                <th>Descripción</th>
+                <th>Ver detalle</th> <!-- aca deberia mostrar una pagina igual a la de registrar un asiento pero que no sea editable -->
+            </tr>
+        </thead>
+        <tbody id="asientos-body">
+            {% for asiento in asientos %}
+                <tr>
+                    <td>{{asiento.fecha}}</td>
+                    <td>{{asiento.id}}</td>
+                    <td>{{asiento.descripcion}}</td>
+                    <td><a href="detalles_asiento/{{asiento.id}}">Ver detalle</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <div class="add-button">
+        <a href="{% url 'index' %}"><button class="button2">Registrar Nuevo Asiento</button></a>
+    </div>
+</div>
+
+<!-- JavaScript can be added here to make the page interactive -->
+
+{% endblock content %}

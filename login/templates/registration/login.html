@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema contable</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+</head>
+
+
+
+<style>
+
+.logologin {
+  max-width: 60px; /* Ajusta el tamaño máximo según tus necesidades */
+  height: auto; /* Mantiene la proporción de aspecto original */
+  margin-left: 110px;
+  margin-top: -20px;
+}
+
+.contenedor__login-register{
+    margin-top: -10px;
+    
+}
+
+.caja__trasera-login h3,
+.caja__trasera-register h3 {
+  margin-top: 10px; /* Agrega margen superior para separar de las imágenes */
+  padding-top: -10px;
+}
+.caja__trasera{
+
+
+    border-bottom: 60px;
+    padding-top: -100px;
+}
+
+
+
+</style>
+
+<body>
+
+        <header class="encabezado">
+            <div class="logo" >
+                <img src="{% static 'images/logo.png' %}" alt="logo de la compania" class="logo-img">
+
+                <h2 class="nombre_compania"><i>Sistema contable</i></h2>
+            </div>
+
+        </header>
+
+        <main>
+            <div class="contenedor__todo">
+                <div class="caja__trasera">
+                    <div class="caja__trasera-login">
+                        <img src="{% static 'images/loginhombre.png' %}" alt="logo de la compania" class="logologin">
+                        <h3>¡¡Bienvenido de nuevo!!</h3>
+                        <p>Ingresa con tu nombre y contraseña para que puedas iniciar sesión y accecer a todas la funcionalidades del sistema</p>
+
+                    </div>
+                    <div class="caja__trasera-register">
+                        <img src="{% static 'images/loginhombre.png' %}" alt="logo de la compania" class="logologin">
+                        <h3>¡¡Bienvenido de nuevo!!</h3>
+                        <p>Ingresa con tu nombre y contraseña para que puedas iniciar sesión y accecer a todas la funcionalidades del sistema</p>
+                    </div>
+                </div>
+
+                <!--Formulario de Login-->
+                <div class="contenedor__login-register">
+                    <!--Login-->
+                    <form method="post" action="{% url 'login' %}" class="formulario__login">
+                        {% csrf_token %}
+                        <h2>Inicio de Sesión</h2>
+                        <input type="text" name="username" placeholder="Nombre" required>
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                        <button>Entrar</button>
+                    </form>
+
+                    <!--Registro que no se usa
+
+                    <form action="" class="formulario__register">
+                        <h2>Regístrarse</h2>
+                        <input type="text" placeholder="Nombre completo">
+                        <input type="text" placeholder="Correo Electronico">
+                        <input type="text" placeholder="Usuario">
+                        <input type="password" placeholder="Contraseña">
+                        <button>Regístrarse</button>
+                    </form>
+                    -->
+                </div>
+            </div>
+
+        </main>
+
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    Swal.fire({
+                        "title": "Lo sentimos",
+                        "text": "{{message}}",
+                        "icon": "error"
+                    })
+                </script>
+            {% endfor %}
+        {% endif %}
+</body>
+</html>

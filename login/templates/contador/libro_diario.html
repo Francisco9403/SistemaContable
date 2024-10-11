@@ -1,0 +1,67 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Libro diario{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/libro_diario.css' %}">
+<script src="{% static 'js/libro_diario.js' %}"></script>
+
+<div class="container-libro">
+    <h2 class="titulo-diario">Libro diario</h2>
+
+    <div class="fechas">
+        <div class="label">Inicio:</div>
+        <input type="date" class="input" id="startDate">
+        <div class="label">Final:</div>
+        <input type="date" class="input" id="endDate">
+        <button class="button" id="filterButton">Filtrar</button>
+        <button class="button" id="clearButton">Limpiar</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td><strong>Fecha</strong></td>
+                <td><strong>Descripcion</strong></td>
+                <td><strong>Cuenta</strong></td>
+                <td><strong>Debe</strong></td>
+                <td><strong>Haber</strong></td>
+            </tr>
+        </thead>
+        <tbody id="asientos-body">
+            {% for asiento in asientos %}
+                <tr class="renglon">
+                    <td>{{asiento.fecha}}</td>
+                    <td>{{asiento.descripcion}}</td>
+                {% for c_a in cuenta_asiento %}
+                    {% if c_a.id_asiento.id == asiento.id %}
+                        {% if forloop.first %}
+                        <!-- Primer c_a -->
+                                <td>{{c_a.id_cuenta.nombre}}</td>
+                                <td>{{c_a.debe}}</td>
+                                <td>{{c_a.haber}}</td>
+                            </tr>      
+                        {% else %}
+                            <!-- Todos los objetos excepto el primero -->
+                            <tr class="renglon">
+                                <td></td>
+                                <td></td>
+                                <td>{{c_a.id_cuenta.nombre}}</td>
+                                <td>{{c_a.debe}}</td>
+                                <td>{{c_a.haber}}</td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+{% endblock content %}

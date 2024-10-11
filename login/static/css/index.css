@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-group label {
+    flex: 1;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #FF0000;
+}
+
+.btn-danger:hover {
+    background-color: #b30000;
+}
+
+.asientos-list {
+    margin-top: 20px;
+}
+
+.asientos-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.asientos-list th, .asientos-list td {
+    padding: 10px;
+    border: 1px solid #ccc;
+} 
+
+
+.navbar {
+    background-color: #7F8C8D !important; /* Color de fondo del encabezado */
+}
+
+.navbar-brand {
+    font-size: 24px; /* Tamaño de fuente del nombre del encabezado */
+    margin-right: auto; /* Empuja el nombre del encabezado a la izquierda */
+    padding-left: 20px;
+}
+
+.navbar-nav {
+    margin-left: auto; /* Empuja los botones a la derecha */
+}
+
+.nav-link {
+    color: #333 !important; /* Color de texto de los botones */
+    margin-left: 20px; /* Espacio entre los botones */
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    text-decoration: none; /* Subraya los botones al pasar el mouse sobre ellos */
+    color: #D0D3D4 !important;
+}
+
+.navbar {
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+    padding: 10px 0; /* Espacio en la parte superior e inferior de la barra de navegación */
+    background-color: rgba(153, 163, 164, 0.90) !important; /* Color de fondo del encabezado */        
+    color: black;
+    font-weight: bold;
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+body{
+    background-image: url(../../static/images/contable.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin-top: 80px; /* Ajusta según la altura del encabezado */
+
+}
+.btn{
+    margin-top: 10px;
+
+}
+.registroAciento{
+    text-align: center;
+
+}
+.texto-negro {
+color: #000 !important;
+}

@@ -1,0 +1,24 @@
+
+
+body {
+    text-align: center; /* Centra el contenido */
+}
+
+
+
+.item{
+    padding-right: 10px;
+
+}
+
+h1{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form {
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    width: 80%; /* Ancho del formulario */
+    max-width: 600px; /* Ancho máximo del formulario */
+    text-align: left; /* Alinea el contenido del formulario a la izquierda */
+}

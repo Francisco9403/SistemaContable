@@ -1,0 +1,69 @@
+.libro_mayor_titulo{
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+
+.titulo_cuenta{
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: -10px;
+    font-weight: 600;
+}
+
+.button{
+    border: 2px solid black;
+    font-weight: bold;
+    margin-left: 30px;
+    background-color: #007BFF;
+    display: inline-block;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16;
+    width: 80px!important;
+    height: 40px !important;
+    text-align: center !important; /* Centra el texto horizontalmente */
+
+}
+
+#aplicar_cuenta{
+    margin-left: 25px;
+    padding: 4px 11px;
+}
+
+#cuenta{
+    height: 20%;
+    margin-top: 11px;
+    width: 40%;
+}
+
+.table {
+    width: 40%;
+    border-collapse: collapse;
+    margin: 0px auto;
+    background: #f3ecec;
+}
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.table th {
+    background-color: #f2f2f2;
+}
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.label{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.label1{
+    margin-right: 10px;
+    margin-left: 20px;
+    font-weight: bold;
+}

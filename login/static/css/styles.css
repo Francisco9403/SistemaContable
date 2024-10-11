@@ -1,0 +1,56 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+.container-libro{
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .tabla{
+        border-collapse: collapse;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table td,.table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table tr:nth-child(even){
+        background-color: #f2f2f2;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+    .table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        /*background-color: #04AA6D;*/
+        color: white;
+    }
+    .renglon{
+        border: white 1px solid;
+        padding: 30px;
+    }
+}

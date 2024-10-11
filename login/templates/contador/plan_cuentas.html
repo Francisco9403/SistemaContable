@@ -1,0 +1,36 @@
+{% extends 'login/base.html' %}    # depending on where you locate that file
+{% load static %}
+
+{% block title %}Plan de Cuentas{% endblock title%}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/plan_cuentas.css' %}">
+
+<div class="container-plan-cuentas" style="padding: 30px">
+    <h2 class="plan_cuenta_titulo">Historial de cuentas</h2>
+
+    <table class="tabla">
+        <tr class="columna">
+            <th><strong>Nombre</strong></th>
+            <th><strong>Código</strong></th>
+            <th><strong>Tipo</strong></th>
+        </tr>
+        {% for cuenta in cuentas %}
+        <tr class="renglon">
+            <td>{{cuenta.nombre}}</td>
+            <td>{{cuenta.codigo}}</td>
+            <td>{{cuenta.tipo}}</td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </table>
+
+    {% if is_admin or is_contador %}
+    <a class="btn btn-primary" id="agregar_cuenta" href="{% url 'registrar_cuentas' %}"> Agregar cuenta</a>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

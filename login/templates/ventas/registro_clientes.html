@@ -1,0 +1,56 @@
+{% extends 'login/base.html' %}  
+{% load static %}
+
+
+{% block title %}Registro Clientes{% endblock %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registro_clientes.css' %}">
+<script src="{% static 'js/registro_clientes.js' %}"></script>
+
+
+
+
+<h1>Registro de Clientes</h1>
+<form action="{% url 'registrar_clientes' %}" method="post">
+    {% csrf_token %}
+    <label for="nombre">Nombre:</label>
+    <textarea id="nombre" name="nombre"></textarea>
+
+    <label for="dni">DNI:</label>
+    <input type="number" id="dni" name="dni">
+
+    <label for="direccion">Direccion:</label>
+    <textarea id="direccion" name="direccion"></textarea>
+
+    <label for="contacto">Datos de contacto:</label>
+    <textarea id="contacto" name="contacto"></textarea>
+
+    <button class= "bontonRegistrar" id="registrar" type="submit">Registrar Cliente</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "success"
+                })
+            </script>
+        {% else %}
+            <script>
+                console.log("{{message}}")
+                Swal.fire({
+                    "text": "{{message}}",
+                    "icon": "error"
+                })
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

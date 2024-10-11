@@ -1,0 +1,49 @@
+    /* Estilo para el logo */
+    .logo {
+        display: flex;
+        align-items: center; /* Centra verticalmente los elementos dentro de .logo */
+      }
+
+      .logo-img {
+        max-width: 100px; /* Ajusta el tamaño máximo del logo según tus preferencias */
+        margin-right: 6px; /* Espacio entre el logo y el nombre de la empresa */
+      }
+
+      /* Estilo para el nombre de la empresa */
+      .nombre_compania {
+        margin: 0; /* Elimina el margen predeterminado */
+        font-style: italic; /* Estilo de fuente en cursiva, si lo deseas */
+        font-weight: bold;
+      }
+
+      /* Estilo para la barra de navegación */
+      .navbar {
+        justify-content: space-between; /* Distribuye los elementos horizontalmente */
+        padding: 10px 0; /* Espacio en la parte superior e inferior de la barra de navegación */
+        background-color: rgba(153, 163, 164, 0.90) !important; /* Color de fondo del encabezado */        
+        color: black;
+        font-weight: bold;
+
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    body{
+        background-image: url(../../static/images/contable.jpg);
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        margin-top: 80px; /* Ajusta según la altura del encabezado */
+    }
+    .nav-link{
+      color: black;
+    }
+    .texto-negro {
+    color: #000 !important;
+    }
+    .registroAciento{
+        text-align: center;
+
+    }
