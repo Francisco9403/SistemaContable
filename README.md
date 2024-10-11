@@ -1,7 +1,5 @@
 # Sistema Contable
 
-![Sistema Contable]<!-- Reemplaza este enlace con una imagen de tu proyecto -->
-
 ## Descripción
 
 El **Sistema Contable** es una aplicación web diseñada para gestionar de manera eficiente las operaciones contables de una empresa. Proporciona una interfaz amigable para realizar ventas, gestionar asientos contables y llevar un control detallado a través de libros contables.
@@ -21,6 +19,13 @@ El **Sistema Contable** es una aplicación web diseñada para gestionar de maner
 - **HTML:** Estructura de la página web.
 - **CSS:** Estilos y diseño responsivo.
 - **JavaScript:** Lógica del lado del cliente e interactividad.
+
+## Screenshots
+
+![WoT App Screenshot](images/1.png)
+![WoT App Screenshot](images/2.png)
+![WoT App Screenshot](images/3.png)
+![WoT App Screenshot](images/4.png)
 
 ## Instalación
 
