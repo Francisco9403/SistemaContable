@@ -1,9 +1,6 @@
-Aquí tienes un ejemplo de un `README.md` para tu sistema contable, con las funciones que mencionaste y las tecnologías utilizadas:
-
-
 # Sistema Contable
 
-![Sistema Contable]([https://www.link-a-tu-imagen.com/imagen-ejemplo.jpg](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqnF1qeTaz38WiUXM7D4Jz6tceHMEFIAvOA&s)) <!-- Reemplaza este enlace con una imagen de tu proyecto -->
+![Sistema Contable]<!-- Reemplaza este enlace con una imagen de tu proyecto -->
 
 ## Descripción
 
